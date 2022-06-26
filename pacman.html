@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pacman 99</title>
+    <script src="pacman.js"></script>
+</head>
+<body>
+<canvas id="myCanvas" width="1890px" height="900px" style="border: solid 3px"></canvas>
+<script>
+    const CANVAS_MAX_WIDTH = 1890;
+    const CANVAS_MAX_HEIGHT = 900;
+    let canvas = document.getElementById("myCanvas");
+    canvas.width = CANVAS_MAX_WIDTH;
+    canvas.height = CANVAS_MAX_HEIGHT;
+    let ctx = canvas.getContext('2d')
+    let pacMan = new PacMan(100, 60, 60, 45, 'Pacman_right.png');
+    let food = new Food(Math.random() * canvas.width - 50, Math.random() * canvas.height - 50, 30, 20, "black-circle.png");
+    let score = 0;
+    let ghostTwo = new Ghost(800, 10, 120, 80, "ghost-down.png");
+    let ghostOne = new Ghost(10, 400, 120, 80, "Ghost-right.png");
+    let grass = new Grass(945, 450, canvas.clientWidth, canvas.clientHeight, "hinh-nen-mau-xanh-2.jpg")
+    grass.drawGrass(ctx);
+    pacMan.drawPacMan(ctx);
+    food.drawNewFood(ctx);
+    ghostOne.draw(ctx);
+    ghostTwo.draw(ctx);
+
+</script>
+</body>
+</html>
+
