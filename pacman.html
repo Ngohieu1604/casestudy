@@ -28,29 +28,24 @@
     food.drawNewFood(ctx);
     ghostOne.draw(ctx);
     ghostTwo.draw(ctx);
-
     function movePacMan(event) {
         switch (event.keyCode) {
             case 37: {
-
                 pacMan.src = "Pacman_left.png"
                 pacMan.moveLeft();
                 break;
             }
             case 39: {
-
                 pacMan.src = "Pacman_right.png"
                 pacMan.moveRight();
                 break;
             }
             case 38: {
-
                 pacMan.src = "Pacman_up.png"
                 pacMan.moveUp();
                 break;
             }
             case 40: {
-
                 pacMan.src = "Pacman_down.png"
                 pacMan.moveDown();
                 break;
@@ -60,13 +55,10 @@
         upDateCanVas();
         isGameOver();
         checkCollision();
-
     }
-
     function clearCanvas() {
         ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
     }
-
     function upDateCanVas() {
         clearCanvas();
         grass.drawGrass(ctx);
@@ -74,8 +66,6 @@
         food.drawNewFood(ctx);
         ghostOne.draw(ctx);
         ghostTwo.draw(ctx);
-
-
     }
 
     setInterval(upDateCanVas, 100);
@@ -88,11 +78,8 @@
             if (score === 50) {
                 isWinner();
             }
-
         }
-
     }
-
     function eatFoot() {
         pacMan._width += 5;
         pacMan._height += 5;
@@ -104,39 +91,10 @@
         canvas.height += 5;
         upDateCanVas();
     }
-
     function isGameOver() {
-        if (pacMan._x <= 0 || pacMan._x + pacMan._width >= canvas.clientWidth || pacMan._y <= 0 || pacMan._y + pacMan._height >= canvas.clientHeight) {
-            document.getElementById("gameOver").innerHTML = "GameOver " + "<br/>" + "Score " + score;
-            clearCanvas();
-            canvas.width = CANVAS_MAX_WIDTH;
-            canvas.height = CANVAS_MAX_HEIGHT;
-            pacMan._x = 100;
-            pacMan._y = 60;
-            pacMan._width = 80;
-            pacMan._height = 45;
-            pacMan.src = "Pacman_right.png";
-            food._x = Math.random() * canvas.clientWidth;
-            food._y = Math.random() * canvas.clientHeight;
-            grass.drawGrass(ctx);
-            food.drawNewFood(ctx);
-            pacMan.drawPacMan(ctx);
-            ghostOne.draw(ctx);
-            ghostTwo.draw(ctx);
-            document.getElementById("myCanvas");
-            canvas.getContext('2d');
-            clearInterval(time)
-            let hitLeftWall = pacMan.x < -20
-            let hitRightWall = pacMan.x > canvas.width + 10;
-            let hitTopWall = pacMan.y < -20
-            let hitBottomWall = pacMan.y > canvas.height + 10;
-        }
     }
-
-
     isGameOver();
     time = setInterval(countTime, 2000);
-
     function countTime() {
         canvas.width -= 10;
         canvas.height -= 10;
@@ -150,29 +108,6 @@
         upDateCanVas()
 
     }
-
-    function isWinner() {
-        {
-            document.getElementById("winner").innerHTML = "thắng" + "<br>" + " Pro vậy bro ";
-            clearCanvas();
-            pacMan._x = 100;
-            pacMan._y = 60;
-            pacMan._width = 80;
-            pacMan._height = 45;
-            pacMan.src = "Pacman_right.png";
-            food._x = Math.random() * canvas.clientWidth;
-            food._y = Math.random() * canvas.clientHeight;
-            grass.drawGrass(ctx);
-            food.drawNewFood(ctx);
-            pacMan.drawPacMan(ctx);
-            ghostOne.draw(ctx);
-            ghostTwo.draw(ctx);
-            document.getElementById("myCanvas");
-            canvas.getContext('2d');
-            clearInterval(time);
-        }
-    }
-
     function moveGhostOne() {
         ghostOne.moveRight()
         if (ghostOne._x < 0 || ghostOne._x + ghostOne._width > canvas.clientWidth) {
@@ -192,10 +127,8 @@
     }
 
     setInterval(moveGhostTwo, 100);
-
     function checkCollision() {
         if (isCollise(pacMan, ghostOne) || isCollise(pacMan, ghostTwo)) {
-            document.getElementById("gameOver").innerHTML = "kết thúc " + "<br/>" + "Score " + score;
             clearCanvas();
             pacMan._x = 100;
             pacMan._y = 60;
@@ -215,8 +148,6 @@
 
         }
     }
-
-
     function isCollise(A, B) {
         return Math.abs(A.x - B.x) < (A.width + B.width) / 2 && Math.abs(A.y - B.y) < (A.height + B.height) / 2;
     }
@@ -224,5 +155,3 @@
 </script>
 </body>
 </html>
-
-

@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b0a1c2d-964c-4008-b9db-c8893b1b4244" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/food.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ghost.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/grass.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/case study.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cherry.png" beforeDir="false" afterPath="$PROJECT_DIR$/cherry.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pacman.html" beforeDir="false" afterPath="$PROJECT_DIR$/pacman.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pacmana.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/pacmana.jpg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +30,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2B0CvattZLvGssWtG6Cmftj0f28" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -71,7 +68,12 @@
       <workItem from="1656134936140" duration="609000" />
       <workItem from="1656240116020" duration="1008000" />
       <workItem from="1656259225769" duration="3050000" />
-      <workItem from="1656294356452" duration="1361000" />
+      <workItem from="1656294356452" duration="5109000" />
+      <workItem from="1656299787418" duration="223000" />
+      <workItem from="1656300044408" duration="188000" />
+      <workItem from="1656300253208" duration="16000" />
+      <workItem from="1656300493661" duration="20000" />
+      <workItem from="1656301005324" duration="2914000" />
     </task>
     <servers />
   </component>
