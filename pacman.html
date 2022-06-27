@@ -3,30 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <title>Pacman 99</title>
-    <script src="pacman.js"></script>
 </head>
 <body>
 <canvas id="myCanvas" width="1890px" height="900px" style="border: solid 3px"></canvas>
+<script src="pacman.js"></script>
+<script src="food.js"></script>
+<script src="ghost.js"></script>
+<script src="grass.js"></script>
 <script>
     const CANVAS_MAX_WIDTH = 1890;
     const CANVAS_MAX_HEIGHT = 900;
-    let canvas = document.getElementById("myCanvas");
+    const canvas = document.getElementById("myCanvas");
     canvas.width = CANVAS_MAX_WIDTH;
     canvas.height = CANVAS_MAX_HEIGHT;
-    let ctx = canvas.getContext('2d')
-    let pacMan = new PacMan(100, 60, 60, 45, 'Pacman_right.png');
-    let food = new Food(Math.random() * canvas.width - 50, Math.random() * canvas.height - 50, 30, 20, "black-circle.png");
+    let ctx = canvas.getContext('2d');
+    const pacMan = new PacMan(100, 60, 60, 40,"Pacman_right.png")
+    let food = new Food(Math.random() * canvas.width - 50, Math.random() * canvas.height - 50, 30, 20, "cherry.png");
     let score = 0;
     let ghostTwo = new Ghost(800, 10, 120, 80, "ghost-down.png");
     let ghostOne = new Ghost(10, 400, 120, 80, "Ghost-right.png");
-    let grass = new Grass(945, 450, canvas.clientWidth, canvas.clientHeight, "hinh-nen-mau-xanh-2.jpg")
+    let grass = new Grass(945, 450, canvas.clientWidth, canvas.clientHeight, "pacmana.jpg")
     grass.drawGrass(ctx);
     pacMan.drawPacMan(ctx);
     food.drawNewFood(ctx);
     ghostOne.draw(ctx);
     ghostTwo.draw(ctx);
 
+    function movePacMan(event) {
+        switch (event.keyCode) {
+            case 37: {
+
+                pacMan.src = "Pacman_left.png"
+                pacMan.moveLeft();
+                break;
+            }
+            case 39: {
+
+                pacMan.src = "Pacman_right.png"
+                pacMan.moveRight();
+                break;
+            }
+            case 38: {
+
+                pacMan.src = "Pacman_up.png"
+                pacMan.moveUp();
+                break;
+            }
+            case 40: {
+
+                pacMan.src = "Pacman_down.png"
+                pacMan.moveDown();
+                break;
+            }
+        }
+        pacManEatFood();
+        upDateCanVas();
+        isGameOver();
+        checkCollision();
+
+    }
+
+    function clearCanvas() {
+        ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+    }
+
+    function upDateCanVas() {
+        clearCanvas();
+        grass.drawGrass(ctx);
+        pacMan.drawPacMan(ctx);
+        food.drawNewFood(ctx);
+        ghostOne.draw(ctx);
+        ghostTwo.draw(ctx);
+
+
+    }
+
+    setInterval(upDateCanVas, 100);
+
+    function pacManEatFood() {
+        if (isCollise(pacMan, food)) {
+            eatFoot();
+            score++;
+            document.getElementById("score").innerHTML = "Score " + score;
+            if (score === 50) {
+                isWinner();
+            }
+
+        }
+
+    }
+
+    function eatFoot() {
+        pacMan._width += 5;
+        pacMan._height += 5;
+        pacMan._x += 5;
+        pacMan._y += 5;
+        food._x = Math.random() * canvas.width - 100;
+        food._y = Math.random() * canvas.height - 100;
+        canvas.width += 5;
+        canvas.height += 5;
+        upDateCanVas();
+    }
+
+    function isGameOver() {
+        if (pacMan._x <= 0 || pacMan._x + pacMan._width >= canvas.clientWidth || pacMan._y <= 0 || pacMan._y + pacMan._height >= canvas.clientHeight) {
+            document.getElementById("gameOver").innerHTML = "GameOver " + "<br/>" + "Score " + score;
+            clearCanvas();
+            canvas.width = CANVAS_MAX_WIDTH;
+            canvas.height = CANVAS_MAX_HEIGHT;
+            pacMan._x = 100;
+            pacMan._y = 60;
+            pacMan._width = 80;
+            pacMan._height = 45;
+            pacMan.src = "Pacman_right.png";
+            food._x = Math.random() * canvas.clientWidth;
+            food._y = Math.random() * canvas.clientHeight;
+            grass.drawGrass(ctx);
+            food.drawNewFood(ctx);
+            pacMan.drawPacMan(ctx);
+            ghostOne.draw(ctx);
+            ghostTwo.draw(ctx);
+            document.getElementById("myCanvas");
+            canvas.getContext('2d');
+            clearInterval(time)
+            let hitLeftWall = pacMan.x < -20
+            let hitRightWall = pacMan.x > canvas.width + 10;
+            let hitTopWall = pacMan.y < -20
+            let hitBottomWall = pacMan.y > canvas.height + 10;
+        }
+    }
+
+
+    isGameOver();
+    time = setInterval(countTime, 2000);
+
+    function countTime() {
+        canvas.width -= 10;
+        canvas.height -= 10;
+        if (food._x < 0 || food._x + food._width >= canvas.clientWidth || food._y < 0 || food._y + food._height >= canvas.clientHeight) {
+            food._x = Math.random() * canvas.clientWidth - 100;
+            food._y = Math.random() * canvas.clientHeight - 100;
+        }
+        clearCanvas();
+        document.getElementById("myCanvas");
+        canvas.getContext("2d");
+        upDateCanVas()
+
+    }
+
+    function isWinner() {
+        {
+            document.getElementById("winner").innerHTML = "thắng" + "<br>" + " Pro vậy bro ";
+            clearCanvas();
+            pacMan._x = 100;
+            pacMan._y = 60;
+            pacMan._width = 80;
+            pacMan._height = 45;
+            pacMan.src = "Pacman_right.png";
+            food._x = Math.random() * canvas.clientWidth;
+            food._y = Math.random() * canvas.clientHeight;
+            grass.drawGrass(ctx);
+            food.drawNewFood(ctx);
+            pacMan.drawPacMan(ctx);
+            ghostOne.draw(ctx);
+            ghostTwo.draw(ctx);
+            document.getElementById("myCanvas");
+            canvas.getContext('2d');
+            clearInterval(time);
+        }
+    }
+
+    function moveGhostOne() {
+        ghostOne.moveRight()
+        if (ghostOne._x < 0 || ghostOne._x + ghostOne._width > canvas.clientWidth) {
+            ghostOne._x = 10;
+            ghostOne._y = 400;
+        }
+    }
+
+    setInterval(moveGhostOne, 100);
+
+    function moveGhostTwo() {
+        ghostTwo.moveDown()
+        if (ghostTwo._y < 0 || ghostTwo._y + ghostTwo._height > canvas.clientHeight) {
+            ghostTwo._x = 850;
+            ghostTwo._y = 10;
+        }
+    }
+
+    setInterval(moveGhostTwo, 100);
+
+    function checkCollision() {
+        if (isCollise(pacMan, ghostOne) || isCollise(pacMan, ghostTwo)) {
+            document.getElementById("gameOver").innerHTML = "kết thúc " + "<br/>" + "Score " + score;
+            clearCanvas();
+            pacMan._x = 100;
+            pacMan._y = 60;
+            pacMan._width = 80;
+            pacMan._height = 45;
+            pacMan.src = "Pacman_right.png";
+            food._x = Math.random() * canvas.clientWidth;
+            food._y = Math.random() * canvas.clientHeight;
+            grass.drawGrass(ctx);
+            food.drawNewFood(ctx);
+            pacMan.drawPacMan(ctx);
+            ghostOne.draw(ctx);
+            ghostTwo.draw(ctx);
+            document.getElementById("myCanvas");
+            canvas.getContext('2d');
+            clearInterval(time);
+
+        }
+    }
+
+
+    function isCollise(A, B) {
+        return Math.abs(A.x - B.x) < (A.width + B.width) / 2 && Math.abs(A.y - B.y) < (A.height + B.height) / 2;
+    }
+    document.addEventListener("keydown", movePacMan);
 </script>
 </body>
 </html>
+
 
