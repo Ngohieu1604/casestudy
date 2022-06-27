@@ -76,19 +76,18 @@
             score++;
             document.getElementById("score").innerHTML = "Score " + score;
             if (score === 50) {
-                isWinner();
             }
         }
     }
     function eatFoot() {
-        pacMan._width += 5;
-        pacMan._height += 5;
+        pacMan._width +=5;
+        pacMan._height +=5;
         pacMan._x += 5;
         pacMan._y += 5;
-        food._x = Math.random() * canvas.width - 100;
-        food._y = Math.random() * canvas.height - 100;
-        canvas.width += 5;
-        canvas.height += 5;
+        food._x = Math.random() * canvas.width - 50;
+        food._y = Math.random() * canvas.height - 50;
+        canvas.width += 10;
+        canvas.height += 10;
         upDateCanVas();
     }
     function isGameOver() {
