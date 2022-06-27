@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Pacman 99</title>
+    <link rel="stylesheet" href="Score.css">
 </head>
 <body>
+<h4 id="score">Score</h4>
 <canvas id="myCanvas" width="1890px" height="900px" style="border: solid 3px"></canvas>
 <script src="pacman.js"></script>
 <script src="food.js"></script>
@@ -86,8 +88,8 @@
         pacMan._y += 5;
         food._x = Math.random() * canvas.width - 50;
         food._y = Math.random() * canvas.height - 50;
-        canvas.width += 10;
-        canvas.height += 10;
+        canvas.width += 5;
+        canvas.height += 5;
         upDateCanVas();
     }
     function isGameOver() {
