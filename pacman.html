@@ -70,7 +70,7 @@
         ghostTwo.draw(ctx);
     }
 
-    setInterval(upDateCanVas, 100);
+    setInterval(upDateCanVas, 200);
 
     function pacManEatFood() {
         if (isCollise(pacMan, food)) {
@@ -86,7 +86,7 @@
         pacMan._height +=5;
         pacMan._x += 5;
         pacMan._y += 5;
-        food._x = Math.random() * canvas.width - 50;
+        food._x = Math.random() * canvas.width - -50;
         food._y = Math.random() * canvas.height - 50;
         canvas.width += 5;
         canvas.height += 5;
