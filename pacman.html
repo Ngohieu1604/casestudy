@@ -97,8 +97,8 @@
     isGameOver();
     time = setInterval(countTime, 2000);
     function countTime() {
-        canvas.width -= 10;
-        canvas.height -= 10;
+        canvas.width -= 15;
+        canvas.height -= 15;
         if (food._x < 0 || food._x + food._width >= canvas.clientWidth || food._y < 0 || food._y + food._height >= canvas.clientHeight) {
             food._x = Math.random() * canvas.clientWidth - 100;
             food._y = Math.random() * canvas.clientHeight - 100;
